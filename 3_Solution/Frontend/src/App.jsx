@@ -16,6 +16,8 @@ import TopRegizori from './pages/TopRegizori';
 import PopularSeries from './pages/PopularSeries';
 import TopSeriale from './pages/TopSeriale';
 import Suport from './pages/Suport';
+import ActorDetails from './pages/ActorDetails';
+import DirectorDetails from './pages/DirectorDetails';
 
 
 // ... rutele:
@@ -43,8 +45,8 @@ function App() {
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/top-actori" element={<TopActori />} />
             <Route path="/top-regizori" element={<TopRegizori />} />
-            <Route path="/actor/:actorName" element={<Home searchTerm={searchTerm} />} />
-            <Route path="/director/:directorName" element={<Home searchTerm={searchTerm} />} />
+            <Route path="/actor/:actorId" element={<ActorDetails />} />
+            <Route path="/director/:directorId" element={<DirectorDetails />} />
             <Route path="/popular-series" element={<PopularSeries />} />
             <Route path="/top-seriale" element={<TopSeriale />} />
             <Route path="/suport" element={<Suport />} />

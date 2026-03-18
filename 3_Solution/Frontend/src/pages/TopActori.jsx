@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { listaFilme } from '../data/filme';
 import { listaSeriale } from '../data/seriale';
+import { listaActori } from '../data/actori';
 import { Link } from 'react-router-dom';
 
 function TopActori() {
@@ -9,13 +10,21 @@ function TopActori() {
     const toatePeliculele = [...listaFilme, ...listaSeriale];
 
     toatePeliculele.forEach((item) => {
-      item.actori.forEach((actor) => {
-        if (!stats[actor]) {
-          // Salvăm și o imagine reprezentativă (prima găsită) pentru avatar
-          stats[actor] = { nume: actor, count: 0, sumaNote: 0, img: item.img };
+      item.actori.forEach((actorNume, idx) => {
+        const actorData = listaActori.find(a => a.nume === actorNume);
+        const actorId = item.actorIds?.[idx] || actorNume;
+        if (!stats[actorNume]) {
+          stats[actorNume] = { 
+            id: actorId,
+            nume: actorNume, 
+            count: 0, 
+            sumaNote: 0, 
+            img: actorData?.img || item.img,
+            varsta: actorData?.varsta || null
+          };
         }
-        stats[actor].count += 1;
-        stats[actor].sumaNote += item.nota;
+        stats[actorNume].count += 1;
+        stats[actorNume].sumaNote += item.nota;
       });
     });
 
@@ -39,7 +48,7 @@ function TopActori() {
       <div className="flex flex-col gap-4">
         {actoriRanked.map((actor, index) => (
           <Link 
-            to={`/actor/${actor.nume}`} 
+            to={`/actor/${actor.id}`} 
             key={actor.nume}
             className="group flex items-center gap-6 bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800 p-4 rounded-2xl transition-all duration-300"
           >

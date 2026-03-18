@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { listaFilme } from '../data/filme';
 import { listaSeriale } from '../data/seriale';
+import { listaRegizori } from '../data/regizori';
 import { Link } from 'react-router-dom';
 
 function TopRegizori() {
@@ -13,9 +14,17 @@ function TopRegizori() {
       const regizoriArray = item.regizor.split(',').map(r => r.trim());
       
       regizoriArray.forEach((reg) => {
+        const regData = listaRegizori.find(r => r.nume === reg);
         if (!stats[reg]) {
           // Salvăm și o imagine reprezentativă pentru avatar
-          stats[reg] = { nume: reg, count: 0, sumaNote: 0, img: item.img };
+          stats[reg] = { 
+            id: regData?.id || reg,
+            nume: reg, 
+            count: 0, 
+            sumaNote: 0, 
+            img: regData?.img || item.img,
+            varsta: regData?.varsta || null
+          };
         }
         stats[reg].count += 1;
         stats[reg].sumaNote += item.nota;
@@ -43,7 +52,7 @@ function TopRegizori() {
         {regizoriRanked.map((reg, index) => (
           <Link 
             key={reg.nume}
-            to={`/director/${reg.nume}`}
+            to={`/director/${reg.id}`}
             // FIX: rounded-[32px] pentru colțuri rotunjite perfect
             className="group flex items-center gap-6 bg-slate-900/40 hover:bg-slate-800/60 border border-slate-800 p-4 rounded-2xl transition-all duration-300"
           >

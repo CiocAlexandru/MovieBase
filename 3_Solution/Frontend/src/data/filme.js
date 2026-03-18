@@ -7,7 +7,9 @@ export const listaFilme = [
     popularitate: 98,
     gen: "Comedie",
     regizor: "Matei Dima",
+    regizorId: "r1",
     actori: ["Matei Dima", "Micutzu"],
+    actorIds: ["a1", "a2"],
     descriere: "O comedie nebună despre viața la birou și aventurile la munte.",
     img: "https://m.media-amazon.com/images/M/MV5BZTgyMzg3MzktMWE0MC00NTA3LWI2NGUtNzJlM2I4MGVmMThiXkEyXkFqcGc@._V1_.jpg" ,
     trailer: "https://www.youtube.com/embed/oBgKKe7EPSk?si=Uw256HAgoix-fAaG"
@@ -21,7 +23,9 @@ export const listaFilme = [
     popularitate: 92,
     gen: "Comedie",
     regizor: "Nae Caranfil",
+    regizorId: "r2",
     actori: ["Mircea Diaconu"],
+    actorIds: ["a3"],
     descriere: "Povestea unui profesor care învață că viața e o piesă de teatru.",
     img: "https://upload.wikimedia.org/wikipedia/ro/4/41/Filantropica.jpg",
     trailer: "https://www.youtube.com/embed/ri6OgrxBHpU?si=c3OeYKLKmm49TL9-"
@@ -34,7 +38,9 @@ export const listaFilme = [
     popularitate: 85,
     gen: "Comedie",
     regizor: "Cristian Iliușan",
+    regizorId: "r3",
     actori: ["Mircea Bravo"],
+    actorIds: ["a4"],
     descriere: "Mircea se întoarce în orașul natal Gherla și dă de belele.",
     img: "https://upload.wikimedia.org/wikipedia/ro/1/1c/Mirciulica2022.jpg" ,
     trailer: "https://www.youtube.com/embed/PU9Mzd1g1Fc?si=zaovN0vct_xbsFA3"
@@ -47,7 +53,9 @@ export const listaFilme = [
     popularitate: 88,
     gen: "Dramă",
     regizor: "Cristian Mungiu",
+    regizorId: "r4",
     actori: ["Anamaria Marinca"],
+    actorIds: ["a5"],
     descriere: "O dramă intensă premiată la Cannes despre prietenie și sacrificiu.",
     img: "https://upload.wikimedia.org/wikipedia/ro/4/44/4_luni%2C_3_saptamini_si_2_zile.jpg" ,
     trailer: "https://www.youtube.com/embed/Jk2LY4UXnt0?si=yetJVHhmCuQZYoNO"
@@ -60,7 +68,9 @@ export const listaFilme = [
     popularitate: 94,
     gen: "Istoric",
     regizor: "Tudor Giurgiu",
+    regizorId: "r5",
     actori: ["Alex Calangiu"],
+    actorIds: ["a6"],
     descriere: "Haosul și tensiunea zilelor Revoluției din 1989.",
     img: "https://upload.wikimedia.org/wikipedia/ro/4/45/Libertate_2023.jpg" ,
     trailer: "https://www.youtube.com/embed/oi6fgGSsMXU?si=vyguAyGPrcMj30vU"
