@@ -8,12 +8,11 @@ export const listaFilme = [
     gen: "Comedie",
     regizor: "Matei Dima",
     regizorId: "r1",
-    actori: ["Matei Dima", "Micutzu"],
-    actorIds: ["a1", "a2"],
+    actori: ["Matei Dima", "Cosmin Nedelcu", "Anca Dinicu", "Nicu Banea", "Anca Munteanu", "Șerban Pavlu"],
+    actorIds: ["a1", "a2", "a3", "a4", "a5", "a6"],
     descriere: "O comedie nebună despre viața la birou și aventurile la munte.",
-    img: "https://m.media-amazon.com/images/M/MV5BZTgyMzg3MzktMWE0MC00NTA3LWI2NGUtNzJlM2I4MGVmMThiXkEyXkFqcGc@._V1_.jpg" ,
+    img: "https://m.media-amazon.com/images/M/MV5BZTgyMzg3MzktMWE0MC00NTA3LWI2NGUtNzJlM2I4MGVmMThiXkEyXkFqcGc@._V1_.jpg",
     trailer: "https://www.youtube.com/embed/oBgKKe7EPSk?si=Uw256HAgoix-fAaG"
-    
   },
   { 
     id: 2, 
@@ -24,8 +23,8 @@ export const listaFilme = [
     gen: "Comedie",
     regizor: "Nae Caranfil",
     regizorId: "r2",
-    actori: ["Mircea Diaconu"],
-    actorIds: ["a3"],
+    actori: ["Mircea Diaconu", "Gheorghe Dinică", "Mara Nicolescu", "Viorica Vodă", "Florin Zamfirescu"],
+    actorIds: ["a7", "a8", "a9", "a10", "a11"],
     descriere: "Povestea unui profesor care învață că viața e o piesă de teatru.",
     img: "https://upload.wikimedia.org/wikipedia/ro/4/41/Filantropica.jpg",
     trailer: "https://www.youtube.com/embed/ri6OgrxBHpU?si=c3OeYKLKmm49TL9-"
@@ -39,10 +38,10 @@ export const listaFilme = [
     gen: "Comedie",
     regizor: "Cristian Iliușan",
     regizorId: "r3",
-    actori: ["Mircea Bravo"],
-    actorIds: ["a4"],
+    actori: ["Mircea Bravo", "Vlad Gherman", "Adriana Trandafir", "Dorian Bogută", "Romică Țociu"],
+    actorIds: ["a12", "a13", "a14", "a15", "a16"],
     descriere: "Mircea se întoarce în orașul natal Gherla și dă de belele.",
-    img: "https://upload.wikimedia.org/wikipedia/ro/1/1c/Mirciulica2022.jpg" ,
+    img: "https://upload.wikimedia.org/wikipedia/ro/1/1c/Mirciulica2022.jpg",
     trailer: "https://www.youtube.com/embed/PU9Mzd1g1Fc?si=zaovN0vct_xbsFA3"
   },
   { 
@@ -54,10 +53,10 @@ export const listaFilme = [
     gen: "Dramă",
     regizor: "Cristian Mungiu",
     regizorId: "r4",
-    actori: ["Anamaria Marinca"],
-    actorIds: ["a5"],
+    actori: ["Anamaria Marinca", "Laura Vasiliu", "Vlad Ivanov", "Alexandru Potocean", "Luminița Gheorghiu"],
+    actorIds: ["a17", "a18", "a19", "a20", "a21"],
     descriere: "O dramă intensă premiată la Cannes despre prietenie și sacrificiu.",
-    img: "https://upload.wikimedia.org/wikipedia/ro/4/44/4_luni%2C_3_saptamini_si_2_zile.jpg" ,
+    img: "https://upload.wikimedia.org/wikipedia/ro/4/44/4_luni%2C_3_saptamini_si_2_zile.jpg",
     trailer: "https://www.youtube.com/embed/Jk2LY4UXnt0?si=yetJVHhmCuQZYoNO"
   },
   { 
@@ -69,10 +68,10 @@ export const listaFilme = [
     gen: "Istoric",
     regizor: "Tudor Giurgiu",
     regizorId: "r5",
-    actori: ["Alex Calangiu"],
-    actorIds: ["a6"],
+    actori: ["Alex Calangiu", "Ionuț Caras", "Bogdan Nechifor", "Marius Bodochi", "Ada Condeescu"],
+    actorIds: ["a22", "a23", "a24", "a25", "a26"],
     descriere: "Haosul și tensiunea zilelor Revoluției din 1989.",
-    img: "https://upload.wikimedia.org/wikipedia/ro/4/45/Libertate_2023.jpg" ,
+    img: "https://upload.wikimedia.org/wikipedia/ro/4/45/Libertate_2023.jpg",
     trailer: "https://www.youtube.com/embed/oi6fgGSsMXU?si=vyguAyGPrcMj30vU"
   }
 ];

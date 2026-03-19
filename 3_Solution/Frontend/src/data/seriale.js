@@ -9,15 +9,14 @@ export const listaSeriale = [
     gen: "Crimă",
     regizor: "Bogdan Mirică",
     regizorId: "r6",
-    actori: ["Șerban Pavlu", "Maria Obretin", "Andreea Vasile"],
-    actorIds: ["a7", "a8", "a9"],
+    actori: ["Șerban Pavlu", "Maria Obretin", "Andreea Vasile", "Doru Ana", "Mădălina Craiu", "Andi Vasluianu"],
+    actorIds: ["a6", "a27", "a28", "a29", "a30", "a31"],
     descriere: "Relu este un taximetrist care duce o viață dublă ca recuperator pentru un mafiot local.",
-    img: "https://upload.wikimedia.org/wikipedia/en/4/4c/Umbre_season_1_poster.jpg" ,
-    trailereSezoane:{ 
+    img: "https://upload.wikimedia.org/wikipedia/en/4/4c/Umbre_season_1_poster.jpg",
+    trailereSezoane: { 
       1: "https://www.youtube.com/embed/WICU1Pb5O84?si=RHoLZM_Bsd_m2zly",
       2: "https://www.youtube.com/embed/OCnJKaQmMJs?si=FoadtYz3RrIeZLcK",
       3: "https://www.youtube.com/embed/ssOOK20QNfE?si=dMqcmXJ62-Lhmv9Z"
-
     }
   },
   { 
@@ -29,12 +28,17 @@ export const listaSeriale = [
     gen: "Acțiune",
     regizor: "Anghel Damian",
     regizorId: "r7",
-    actori: ["Denis Hanganu", "Marian Olteanu", "George Mihăiță"],
-    actorIds: ["a10", "a11", "a12"],
+    actori: ["Denis Hanganu", "Marian Olteanu", "George Mihăiță", "Cătălin Babliuc", "Medeea Marinescu"],
+    actorIds: ["a32", "a33", "a34", "a35", "a36"],
     descriere: "O luptă tensionată între poliție și lumea interlopă, unde doi frați ajung pe părți opuse ale legii.",
-    img: "https://cmero-ott-images-svod.ssl.cdn.cra.cz/r800x1160n/ad802c4a-901f-4700-9948-39361f41a677" ,
-    trailer: "https://www.youtube.com/embed/fkUaX-ZFVT4?si=wesZyPyedQdnbhYH"
-   
+    img: "https://cmero-ott-images-svod.ssl.cdn.cra.cz/r800x1160n/ad802c4a-901f-4700-9948-39361f41a677",
+    nrSezoane: 4,
+    trailereSezoane: {
+      1: "https://www.youtube.com/embed/fkUaX-ZFVT4?si=wesZyPyedQdnbhYH",
+      2: "https://www.youtube.com/embed/CQ1HaMNbO5k?si=2rotgrvxX8WvtEqU",
+      3: "https://www.youtube.com/embed/9u_Bbud7Ue4?si=FytvAFuUhi0-HDJl",
+      4: "https://www.youtube.com/embed/MtQn5DMyj40?si=f_RDEmd69_0Um4v4"
+    }
   },
   { 
     id: 103, 
@@ -45,11 +49,32 @@ export const listaSeriale = [
     gen: "Comedie",
     regizor: "Dragoș Buliga",
     regizorId: "r8",
-    actori: ["Mihai Bobonete", "Costi Diță", "Anca Dumitra"],
-    actorIds: ["a13", "a14", "a15"],
+    actori: ["Mihai Bobonete", "Costi Diță", "Anca Dumitra", "Gheorghe Ifrim", "Dragoș Huluba"],
+    actorIds: ["a37", "a38", "a39", "a40", "a41"],
     descriere: "Viața plină de umor și situații absurde a locuitorilor din cel mai faimos sat din România.",
-    img: "https://artworks.thetvdb.com/banners/posters/5d7d193678f07.jpg" ,
-    trailer: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF"
+    img: "https://artworks.thetvdb.com/banners/posters/5d7d193678f07.jpg",
+    nrSezoane: 19,
+    trailereSezoane: {
+      1: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=N8OrOUFRB59s_ktO",
+      2: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      3: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      4: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      5: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      6: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      7: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      8: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      9: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      10: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      11: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      12: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      13: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      14: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      15: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      16: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      17: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      18: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF",
+      19: "https://www.youtube.com/embed/O0N-Hm-LrDI?si=D5Mpk9liPxP5tfXF"
+    }
   },
   { 
     id: 104, 
@@ -60,11 +85,14 @@ export const listaSeriale = [
     gen: "Thriller",
     regizor: "Christopher Smith",
     regizorId: "r9",
-    actori: ["Alec Secăreanu", "Ana Ularu"],
-    actorIds: ["a16", "a17"],
+    actori: ["Alec Secăreanu", "Ana Ularu", "Rudolph Walker", "Ioana Abur", "Claudiu Bleonț"],
+    actorIds: ["a42", "a43", "a44", "a45", "a46"],
     descriere: "În plin Război Rece, cel mai de încredere consilier al lui Ceaușescu plănuiește o dezertare riscantă.",
-    img: "https://m.media-amazon.com/images/M/MV5BODJjMGM1M2ItMDZkNC00YjcyLTllODYtNzhlNDRlMmQ4MmQ4XkEyXkFqcGc@._V1_.jpg" ,
-    trailer: "https://www.youtube.com/embed/wI1Rbjy0tl4?si=Gf0USodowkTIaHWT"
+    img: "https://m.media-amazon.com/images/M/MV5BODJjMGM1M2ItMDZkNC00YjcyLTllODYtNzhlNDRlMmQ4MmQ4XkEyXkFqcGc@._V1_.jpg",
+    nrSezoane: 1,
+    trailereSezoane: {
+      1: "https://www.youtube.com/embed/wI1Rbjy0tl4?si=Gf0USodowkTIaHWT"
+    }
   },
   { 
     id: 105, 
@@ -75,10 +103,16 @@ export const listaSeriale = [
     gen: "Dramă",
     regizor: "Jesús del Cerro",
     regizorId: "r10",
-    actori: ["Adrian Nartea", "Olimpia Melinte", "Andrei Aradits"],
-    actorIds: ["a18", "a19", "a20"],
+    actori: ["Adrian Nartea", "Olimpia Melinte", "Andrei Aradits", "Ioana Flora", "Emilian Oprea"],
+    actorIds: ["a47", "a48", "a49", "a50", "a51"],
     descriere: "Trădat de cei mai buni prieteni, un bărbat se întoarce cu o nouă identitate pentru a se răzbuna.",
-    img: "https://media.themoviedb.org/t/p/w500/txdgYJYNWPUOvmXT9dpfcVzOkFp.jpg" ,
-    trailer: "https://www.youtube.com/embed/yzTzUfGwmuo?si=H-s3hopVuF5IKSvJ"
+    img: "https://media.themoviedb.org/t/p/w500/txdgYJYNWPUOvmXT9dpfcVzOkFp.jpg",
+    nrSezoane: 4,
+    trailereSezoane: {
+      1: "https://www.youtube.com/embed/yzTzUfGwmuo?si=H-s3hopVuF5IKSvJ",
+      2: "https://www.youtube.com/embed/sY1j69Y2VMM?si=oYTN4qB4TUdgvql8",
+      3: "https://www.youtube.com/embed/m6ALd6eyX10?si=uHq6LiNtRTjVb29c",
+      4: "https://www.youtube.com/embed/8FI6viIbRWQ?si=GTlyZj8sS1BXaI5B"
+    }
   }
 ];
