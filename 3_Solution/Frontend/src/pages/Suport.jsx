@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+// Dacă ai lucide-react instalat, poți folosi iconițe mai ușor. 
+// Dacă nu, am folosit SVG-uri pentru a fi sigur că funcționează direct.
 
 function Suport() {
   const [formData, setFormData] = useState({ nume: '', email: '', mesaj: '' });
@@ -6,7 +8,6 @@ function Suport() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aici va veni logica de trimis mail prin Backend
     console.log("Mesaj primit:", formData);
     setTrimis(true);
     setTimeout(() => setTrimis(false), 5000);
@@ -16,6 +17,12 @@ function Suport() {
     { q: "Cum pot adăuga un film care lipsește?", a: "Momentan, baza de date este gestionată de echipa noastră. În curând, utilizatorii verificați vor putea propune adăugări noi." },
     { q: "De ce nu pot lăsa recenzii?", a: "Trebuie să fii autentificat. Dacă ai deja cont și nu poți, verifică dacă adresa de email a fost confirmată." },
     { q: "Cum se calculează nota globală?", a: "Nota este o medie aritmetică a tuturor recenziilor lăsate de utilizatorii Pelicula." }
+  ];
+
+  const contactInfo = [
+    { label: "Telefon", value: "+40 722 123 456", icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" },
+    { label: "Email", value: "contact@pelicula.ro", icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" },
+    { label: "Adresă", value: "Strada Cinema Nr. 42, București", icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z" }
   ];
 
   return (
@@ -31,8 +38,22 @@ function Suport() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
-        
+      {/* SECȚIUNEA INFO CONTACT (NOUĂ) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+        {contactInfo.map((info, idx) => (
+          <div key={idx} className="bg-slate-900/40 border border-slate-800 p-8 rounded-32px text-center group hover:border-indigo-500 transition-all">
+            <div className="bg-indigo-500/10 w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-500 transition-colors">
+              <svg className="w-6 h-6 text-indigo-500 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={info.icon} />
+              </svg>
+            </div>
+            <h4 className="text-slate-500 uppercase text-[10px] font-black tracking-widest mb-1">{info.label}</h4>
+            <p className="text-white font-bold italic">{info.value}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-20">
         {/* SECȚIUNEA FAQ */}
         <div>
           <h3 className="text-2xl font-black text-white mb-8 uppercase italic flex items-center gap-3">
@@ -51,17 +72,12 @@ function Suport() {
 
         {/* FORMULAR DE CONTACT */}
         <div className="bg-slate-900/20 border border-slate-800 p-8 md:p-12 rounded-4xl shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-4 opacity-5">
-            <svg className="w-32 h-32 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          </div>
-
           <h3 className="text-2xl font-black text-white mb-8 uppercase italic">Trimite-ne un mesaj</h3>
           
           {trimis ? (
             <div className="bg-indigo-500/20 border border-indigo-500/50 p-6 rounded-2xl text-center animate-in zoom-in">
               <span className="text-3xl mb-2 block">✅</span>
               <p className="text-white font-bold">Mesajul a fost trimis cu succes!</p>
-              <p className="text-indigo-300 text-xs mt-1">Îți vom răspunde în cel mai scurt timp.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -102,9 +118,62 @@ function Suport() {
         </div>
       </div>
 
+      {/* HARTA SI SOCIAL MEDIA (NOU) */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
+        {/* MAPA */}
+        <div className="lg:col-span-2 h-400px rounded-4xl overflow-hidden border border-slate-800 shadow-2xl">
+          <iframe
+  title="Locație Academia Tehnică Militară Ferdinand I"
+  src="https://www.google.com/maps?q=Academia+Tehnică+Militară+Ferdinand+I+București&z=17&output=embed"
+  width="100%"
+  height="100%"
+  style={{ border: 0, filter: 'grayscale(1) invert(0.9) contrast(1.2)' }}
+  allowFullScreen=""
+  loading="lazy"
+  referrerPolicy="no-referrer-when-downgrade"
+/>
+        </div>
+
+        {/* SOCIAL MEDIA */}
+        <div className="bg-slate-900/40 border border-slate-800 p-10 rounded-4xl h-full flex flex-col justify-center">
+          <h3 className="text-xl font-black text-white mb-6 uppercase italic">Urmărește-ne</h3>
+          <div className="space-y-4">
+            <a href="#" className="flex items-center gap-4 text-slate-400 hover:text-indigo-500 transition-colors group">
+              <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500/20">
+                <span className="font-bold">FB</span>
+              </div>
+              <span className="font-bold uppercase tracking-wider text-sm">Facebook</span>
+            </a>
+            <a href="#" className="flex items-center gap-4 text-slate-400 hover:text-indigo-500 transition-colors group">
+              <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500/20">
+                <span className="font-bold">IG</span>
+              </div>
+              <span className="font-bold uppercase tracking-wider text-sm">Instagram</span>
+            </a>
+            <a href="#" className="flex items-center gap-4 text-slate-400 hover:text-indigo-500 transition-colors group">
+              <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500/20">
+                <span className="font-bold">YT</span>
+              </div>
+              <span className="font-bold uppercase tracking-wider text-sm">YouTube</span>
+            </a>
+             <a href="#" className="flex items-center gap-4 text-slate-400 hover:text-indigo-500 transition-colors group">
+              <div className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-indigo-500/20">
+                <span className="font-bold">TT</span>
+              </div>
+              <span className="font-bold uppercase tracking-wider text-sm">TikTok</span>
+            </a>
+          </div>
+          <p className="mt-8 text-slate-600 text-[10px] leading-relaxed italic">
+            Suntem activi zilnic pe rețelele sociale. Trimite-ne un tag în recenziile tale!
+          </p>
+        </div>
+      </div>
+
       {/* FOOTER PAGINĂ */}
       <footer className="mt-32 pt-12 border-t border-slate-800/50 flex flex-col items-center">
-        <div className="text-slate-700 text-[9px] font-black uppercase tracking-widest"> © {new Date().getFullYear()} PELICULA MEDIA • Suport Oficial</div>
+        <div className="text-slate-700 text-[9px] font-black uppercase tracking-widest"> 
+          © {new Date().getFullYear()} PELICULA MEDIA • Toate drepturile rezervate
+        </div>
       </footer>
     </div>
   );

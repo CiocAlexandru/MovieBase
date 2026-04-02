@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import MovieCard from '../components/MovieCard';
+import { useAuth } from '../context/useAuth';
 
 function Watchlist() {
   // 1. Verificăm dacă utilizatorul este logat
-  const isLoggedIn = localStorage.getItem('userToken') !== null;
+  const { utilizatorCurent } = useAuth();
+  const isLoggedIn = !!utilizatorCurent;
 
   // 2. Inițializăm lista de filme "leneș" (Lazy Init)
   // Dacă e guest, lista e goală. Dacă e user, citim din memoria browserului.

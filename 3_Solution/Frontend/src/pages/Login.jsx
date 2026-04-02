@@ -1,14 +1,21 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/useAuth';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [parola, setParola] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const { login, eroare, setEroare } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log("Login date:", { email, parola });
+    setEroare('');
+    const success = login(email, parola);
+    if (success) {
+      navigate('/');
+    }
   };
 
   return (
@@ -18,6 +25,13 @@ function Login() {
 
         <h2 className="text-3xl font-extrabold text-white mb-2">Autentificare</h2>
         <p className="text-slate-500 mb-8 text-sm font-medium">Introdu datele contului tău MovieBase.</p>
+
+        {/* Hint conturi de test */}
+        <div className="mb-6 p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-xs text-slate-400 space-y-1">
+          <p className="font-bold text-slate-300 mb-1">Conturi de test:</p>
+          <p>👤 <span className="text-indigo-400">user@pelicula.ro</span> / <span className="text-indigo-400">user123</span></p>
+          <p>🛡️ <span className="text-indigo-400">admin@pelicula.ro</span> / <span className="text-indigo-400">admin123</span></p>
+        </div>
         
         <form onSubmit={handleLogin} className="space-y-5 relative z-10">
           <div>
@@ -25,6 +39,7 @@ function Login() {
             <input 
               type="email" required placeholder="nume@exemplu.com"
               className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition-all"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -32,7 +47,6 @@ function Login() {
           <div className="relative">
             <div className="flex justify-between items-center mb-1 ml-1">
               <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Parolă</label>
-              {/* LINK-UL ADAUGAT ÎNAPOI */}
               <Link to="/forgot-password" size="sm" className="text-[10px] text-indigo-400 font-bold hover:text-indigo-300 transition uppercase tracking-tighter">
                 Ai uitat parola?
               </Link>
@@ -42,6 +56,7 @@ function Login() {
                 type={showPassword ? "text" : "password"} 
                 required placeholder="••••••••"
                 className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition-all"
+                value={parola}
                 onChange={(e) => setParola(e.target.value)}
               />
               <button 
@@ -57,6 +72,10 @@ function Login() {
               </button>
             </div>
           </div>
+
+          {eroare && (
+            <p className="text-rose-400 text-xs font-bold text-center">{eroare}</p>
+          )}
 
           <button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl mt-4 transition-all shadow-lg shadow-indigo-600/20 uppercase tracking-widest text-xs">
             Log In

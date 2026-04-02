@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Am adăugat useEffect
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/useAuth';
 
 function CommentsSection({ movieId }) {
   // 1. Folosim movieId într-un useEffect ca să dispară eroarea
@@ -8,7 +9,8 @@ function CommentsSection({ movieId }) {
     console.log(`PELICULA: Se încarcă recenziile pentru ID-ul ${movieId}...`);
   }, [movieId]);
 
-  const [isLoggedIn] = useState(false); 
+  const { utilizatorCurent } = useAuth();
+  const isLoggedIn = !!utilizatorCurent;
   
   const [comments, setComments] = useState([
     { id: 1, user: "Cinefil24", text: "Foarte bun, recomand!", date: "12 Martie 2026", rating: 5 },

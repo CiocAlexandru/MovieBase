@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Login from './pages/Login';
@@ -28,6 +29,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
+    <AuthProvider>
     <Router>
       <div className="min-h-screen bg-[#0f172a] text-white selection:bg-indigo-500/30">
         {/* Navbar primește starea pentru a o putea modifica */}
@@ -64,6 +66,7 @@ function App() {
         </main>
       </div>
     </Router>
+    </AuthProvider>
   );
 }
 

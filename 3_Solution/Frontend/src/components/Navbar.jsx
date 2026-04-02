@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/useAuth';
 
 function Navbar({ searchTerm, setSearchTerm }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { utilizatorCurent, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
+    navigate('/');
+  };
 
   // Închide meniul la click pe orice link
   const closeMenu = () => setIsMenuOpen(false);
@@ -58,16 +66,32 @@ function Navbar({ searchTerm, setSearchTerm }) {
 
           {/* AUTH LINKS */}
           <div className="flex items-center gap-4 text-sm font-bold shrink-0">
-            <Link to="/login" onClick={closeMenu} className="hidden sm:block text-slate-400 hover:text-white transition px-2">
-              Autentificare
-            </Link>
-            <Link 
-              to="/register" 
-              onClick={closeMenu} 
-              className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20"
-            >
-              Înregistrare
-            </Link>
+            {utilizatorCurent ? (
+              <>
+                <span className="hidden sm:block text-slate-400 text-xs">
+                  {utilizatorCurent.rol === 'Administrator' ? '🛡️' : '👤'} {utilizatorCurent.nume}
+                </span>
+                <button
+                  onClick={handleLogout}
+                  className="bg-rose-600/80 text-white px-5 py-2 rounded-full hover:bg-rose-500 transition shadow-lg text-xs font-black uppercase tracking-widest"
+                >
+                  Ieșire
+                </button>
+              </>
+            ) : (
+              <>
+                <Link to="/login" onClick={closeMenu} className="hidden sm:block text-slate-400 hover:text-white transition px-2">
+                  Autentificare
+                </Link>
+                <Link 
+                  to="/register" 
+                  onClick={closeMenu} 
+                  className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20"
+                >
+                  Înregistrare
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -120,8 +144,23 @@ function Navbar({ searchTerm, setSearchTerm }) {
           <div className="space-y-6">
             <h4 className="text-indigo-400 font-black uppercase text-m tracking-[0.3em] border-b border-indigo-500/20 pb-2">Acces Utilizator</h4>
             <div className="space-y-6">
-              <Link to="/login" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Autentificare</Link>
-              <Link to="/register" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Cont Nou</Link>
+              {utilizatorCurent ? (
+                <>
+                  <p className="text-slate-300 text-lg font-bold">
+                    {utilizatorCurent.rol === 'Administrator' ? '🛡️' : '👤'} {utilizatorCurent.nume}
+                  </p>
+                  <p className="text-slate-500 text-sm -mt-4">{utilizatorCurent.email}</p>
+                  {utilizatorCurent.rol === 'Administrator' && (
+                    <Link to="/admin" onClick={closeMenu} className="block text-indigo-400 hover:text-indigo-300 transition text-2xl font-bold italic">Panou Admin</Link>
+                  )}
+                  <button onClick={handleLogout} className="block text-rose-400 hover:text-rose-300 transition text-2xl font-bold italic">Deconectare</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Autentificare</Link>
+                  <Link to="/register" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Cont Nou</Link>
+                </>
+              )}
               
               {/* MODIFICARE EFECTUATĂ AICI */}
               <div className="pt-8 border-t border-slate-800">

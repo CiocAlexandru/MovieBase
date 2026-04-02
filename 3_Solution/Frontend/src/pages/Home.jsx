@@ -19,10 +19,10 @@ function Home({ searchTerm }) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Schimbă slide-ul la fiecare 5 secunde
+    // Schimbă slide-ul la fiecare 3 secunde
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % heroItems.length);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [heroItems.length]);
 
