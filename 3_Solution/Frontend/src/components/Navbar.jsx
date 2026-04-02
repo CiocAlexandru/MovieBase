@@ -150,6 +150,9 @@ function Navbar({ searchTerm, setSearchTerm }) {
                     {utilizatorCurent.rol === 'Administrator' ? '🛡️' : '👤'} {utilizatorCurent.nume}
                   </p>
                   <p className="text-slate-500 text-sm -mt-4">{utilizatorCurent.email}</p>
+                  <Link to="/edit-profile" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">
+                    Editează Profil
+                  </Link>
                   {utilizatorCurent.rol === 'Administrator' && (
                     <Link to="/admin" onClick={closeMenu} className="block text-indigo-400 hover:text-indigo-300 transition text-2xl font-bold italic">Panou Admin</Link>
                   )}

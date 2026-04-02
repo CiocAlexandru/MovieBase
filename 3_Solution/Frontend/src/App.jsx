@@ -19,7 +19,7 @@ import TopSeriale from './pages/TopSeriale';
 import Suport from './pages/Suport';
 import ActorDetails from './pages/ActorDetails';
 import DirectorDetails from './pages/DirectorDetails';
-
+import EditProfile from './pages/EditProfile';
 
 // ... rutele:
 
@@ -52,7 +52,7 @@ function App() {
             <Route path="/popular-series" element={<PopularSeries />} />
             <Route path="/top-seriale" element={<TopSeriale />} />
             <Route path="/suport" element={<Suport />} />
-          
+            <Route path="/edit-profile" element={<EditProfile />} />
 
 
             {/* Pagini Autentificare */}

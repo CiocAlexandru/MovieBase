@@ -94,7 +94,7 @@ function ActorDetails() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {filmeActor.map(film => (
               <Link key={film.id} to={`/movie/${film.id}`} className="group">
-                <div className="aspect-[2/3] rounded-2xl overflow-hidden border border-slate-800 group-hover:border-indigo-500/50 transition-all duration-300 mb-2 shadow-lg">
+                <div className="aspect-2/3 rounded-2xl overflow-hidden border border-slate-800 group-hover:border-indigo-500/50 transition-all duration-300 mb-2 shadow-lg">
                   <img src={film.img} alt={film.titlu} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <p className="text-white font-bold text-sm leading-tight group-hover:text-indigo-400 transition-colors">{film.titlu}</p>
@@ -117,7 +117,7 @@ function ActorDetails() {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {serialeActor.map(serial => (
               <Link key={serial.id} to={`/movie/${serial.id}`} className="group">
-                <div className="aspect-[2/3] rounded-2xl overflow-hidden border border-slate-800 group-hover:border-purple-500/50 transition-all duration-300 mb-2 shadow-lg">
+                <div className="aspect-2/3 rounded-2xl overflow-hidden border border-slate-800 group-hover:border-purple-500/50 transition-all duration-300 mb-2 shadow-lg">
                   <img src={serial.img} alt={serial.titlu} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <p className="text-white font-bold text-sm leading-tight group-hover:text-purple-400 transition-colors">{serial.titlu}</p>

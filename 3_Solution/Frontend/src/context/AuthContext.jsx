@@ -6,9 +6,21 @@ const UTILIZATORI_HARDCODATI = [
   { id: 2, nume: "Ion Popescu", email: "user@pelicula.ro", parola: "user123", rol: "User" },
 ];
 
+
+
 export function AuthProvider({ children }) {
   const [utilizatorCurent, setUtilizatorCurent] = useState(null);
   const [eroare, setEroare] = useState('');
+
+
+  const actualizeazaProfil = (dateNoi) => {
+    if (utilizatorCurent) {
+      setUtilizatorCurent((prev) => ({
+        ...prev,
+        ...dateNoi, // Aici suprascriem numele și email-ul cu ce vine din formular
+      }));
+    }
+  };
 
   const login = (email, parola) => {
     const gasit = UTILIZATORI_HARDCODATI.find(
@@ -31,7 +43,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ utilizatorCurent, login, logout, eroare, setEroare }}>
+    <AuthContext.Provider value={{ utilizatorCurent, login, logout,actualizeazaProfil, eroare, setEroare }}>
       {children}
     </AuthContext.Provider>
   );
