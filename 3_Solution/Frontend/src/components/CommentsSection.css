@@ -1,0 +1,75 @@
+@reference "tailwindcss";
+
+
+.comments {
+  @apply mt-16 bg-slate-900/30 rounded-[32px] p-8 md:p-12 border border-slate-800;
+}
+
+.comments__title {
+  @apply text-3xl font-black text-white uppercase italic mb-10 tracking-tighter;
+}
+
+.comments__title-accent {
+  @apply text-indigo-500;
+}
+
+.comments__form-wrap {
+  @apply mb-12 bg-slate-900/50 p-6 rounded-[32px] border border-indigo-500/30;
+}
+
+.comments__rating-label {
+  @apply text-white font-black mb-3 uppercase text-[10px] tracking-[0.2em];
+}
+
+.comments__rating-value {
+  @apply text-yellow-500 text-lg ml-2;
+}
+
+.comments__textarea {
+  @apply w-full bg-slate-950 border border-slate-800 rounded-2xl p-4 text-slate-300 focus:outline-none focus:border-indigo-500 transition-all resize-none h-32 mb-4;
+}
+
+.comments__submit-btn {
+  @apply bg-indigo-600 hover:bg-indigo-500 text-white font-black px-10 py-4 rounded-xl uppercase tracking-widest text-xs transition-all shadow-xl shadow-indigo-600/20;
+}
+
+.comments__locked {
+  @apply mb-12 p-10 rounded-[32px] border border-dashed border-slate-800 bg-slate-900/10 flex flex-col items-center text-center;
+}
+
+.comments__locked-icon {
+  @apply text-4xl mb-4 opacity-50;
+}
+
+.comments__locked-title {
+  @apply text-white font-black uppercase italic mb-2;
+}
+
+.comments__locked-text {
+  @apply text-slate-500 text-sm mb-6 max-w-xs;
+}
+
+.comments__locked-btn {
+  @apply bg-slate-800 hover:bg-indigo-600 text-white px-8 py-3 rounded-full font-black uppercase text-[10px] tracking-widest transition-all;
+}
+
+.comments__item {
+  @apply bg-slate-950/40 p-6 rounded-[28px] border border-slate-800/50 hover:border-slate-700 transition-all;
+}
+
+.comments__avatar {
+  @apply w-10 h-10 rounded-full flex items-center justify-center font-black text-slate-900 italic uppercase;
+  background: linear-gradient(to bottom right, #6366f1, #22d3ee);
+}
+
+.comments__author {
+  @apply text-white font-black italic tracking-tight;
+}
+
+.comments__date {
+  @apply text-slate-600 text-[9px] uppercase font-bold;
+}
+
+.comments__text {
+  @apply text-slate-300 italic text-sm leading-relaxed;
+}

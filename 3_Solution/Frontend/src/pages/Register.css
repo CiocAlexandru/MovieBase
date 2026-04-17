@@ -1,0 +1,57 @@
+@reference "tailwindcss";
+
+.register {
+  @apply flex justify-center items-center min-h-[90vh] py-10 px-4;
+}
+
+.register__card {
+  @apply bg-slate-900/50 backdrop-blur-xl p-10 rounded-3xl border border-slate-800 w-full max-w-md shadow-2xl relative overflow-hidden;
+}
+
+.register__glow-top {
+  @apply absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/20 blur-3xl rounded-full;
+}
+
+.register__glow-bottom {
+  @apply absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 blur-3xl rounded-full;
+}
+
+.register__title {
+  @apply text-3xl font-extrabold text-white mb-2 tracking-tight;
+}
+
+.register__subtitle {
+  @apply text-slate-500 mb-8 text-sm font-medium;
+}
+
+.register__form {
+  @apply space-y-4 relative z-10;
+}
+
+.register__label {
+  @apply text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1;
+}
+
+.register__input {
+  @apply w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all;
+}
+
+.register__confirm-input {
+  @apply w-full bg-slate-950/50 border rounded-xl px-4 py-3 text-white outline-none transition-all;
+}
+
+.register__password-toggle {
+  @apply absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-indigo-400 transition-colors;
+}
+
+.register__submit {
+  @apply w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl mt-6 transition-all shadow-lg shadow-indigo-600/20 uppercase tracking-widest text-xs;
+}
+
+.register__footer {
+  @apply mt-8 text-center text-slate-500 text-sm font-medium;
+}
+
+.register__login-link {
+  @apply text-indigo-400 font-bold hover:text-indigo-300 transition hover:underline;
+}

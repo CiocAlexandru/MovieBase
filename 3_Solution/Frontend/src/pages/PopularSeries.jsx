@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { listaSeriale } from '../data/seriale';
 
 function PopularSeries() {
-  // Sortăm serialele după popularitate
+
   const serialePopulare = [...listaSeriale].sort((a, b) => b.popularitate - a.popularitate);
 
   return (
@@ -14,18 +14,18 @@ function PopularSeries() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {serialePopulare.map((serial) => (
-          <Link 
-            to={`/movie/${serial.id}`} 
+          <Link
+            to={`/movie/${serial.id}`}
             key={serial.id}
             className="group relative h-64 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl transition-transform hover:scale-[1.02] duration-300"
           >
-            {/* Imagine de fundal */}
+
             <img src={serial.img} className="absolute inset-0 w-full h-full object-cover" alt={serial.titlu} />
-            
-            {/* Overlay Gradient */}
+
+
             <div className="absolute inset-0 bg-linear-to-r from-slate-950 via-slate-950/60 to-transparent group-hover:via-indigo-950/40 transition-colors"></div>
-            
-            {/* Info Serial */}
+
+
             <div className="relative h-full p-8 flex flex-col justify-center">
               <div className="flex items-center gap-2 mb-2">
                 <span className="bg-orange-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase">🔥 Popular Series</span>
@@ -33,7 +33,7 @@ function PopularSeries() {
               </div>
               <h3 className="text-3xl font-black text-white mb-2 leading-none uppercase italic">{serial.titlu}</h3>
               <p className="text-slate-400 text-sm max-w-xs line-clamp-2 italic mb-4">{serial.descriere}</p>
-              
+
               <div className="flex items-center gap-4">
                 <span className="text-cyan-400 font-bold">★ {serial.nota}</span>
                 <div className="h-4 w-px bg-slate-700"></div>

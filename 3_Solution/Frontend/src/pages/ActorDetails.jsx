@@ -7,7 +7,7 @@ import { listaSeriale } from '../data/seriale';
 function ActorDetails() {
   const { actorId } = useParams();
 
-  // Suportăm căutare atât după ID cât și după nume (pentru compatibilitate cu link-urile vechi)
+
   const actor = listaActori.find(a => a.id === actorId || a.nume === decodeURIComponent(actorId));
 
   if (!actor) {
@@ -31,16 +31,16 @@ function ActorDetails() {
 
   return (
     <div className="py-10 px-6 md:px-20 max-w-5xl mx-auto">
-      {/* Breadcrumb */}
+
       <div className="mb-8">
         <Link to="/top-actori" className="text-slate-500 hover:text-indigo-400 transition-colors text-xs font-bold uppercase tracking-widest">
           ← Top Actori
         </Link>
       </div>
 
-      {/* Hero Section */}
+
       <div className="flex flex-col md:flex-row gap-8 mb-14 pb-14 border-b border-slate-800">
-        {/* Poza actor */}
+
         <div className="w-full md:w-56 shrink-0">
           <div className="w-full md:w-56 h-72 rounded-3xl overflow-hidden shadow-2xl border border-slate-800">
             <img
@@ -54,14 +54,14 @@ function ActorDetails() {
           </div>
         </div>
 
-        {/* Info */}
+
         <div className="flex flex-col justify-center">
           <p className="text-indigo-400 text-[10px] font-black uppercase tracking-widest mb-2">Actor</p>
           <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter uppercase italic leading-none mb-4">
             {actor.nume}
           </h1>
 
-          {/* Stats rapide */}
+
           <div className="flex flex-wrap gap-4 mb-6">
             <div className="bg-slate-900/60 border border-slate-800 rounded-2xl px-5 py-3 text-center">
               <p className="text-slate-500 text-[9px] font-black uppercase tracking-widest mb-1">Vârstă</p>
@@ -79,12 +79,12 @@ function ActorDetails() {
             </div>
           </div>
 
-          {/* Descriere */}
+
           <p className="text-slate-400 leading-relaxed text-sm max-w-2xl">{actor.descriere}</p>
         </div>
       </div>
 
-      {/* Filme */}
+
       {filmeActor.length > 0 && (
         <section className="mb-12">
           <h2 className="text-xl font-black text-white uppercase italic tracking-tight mb-6 flex items-center gap-3">
@@ -107,7 +107,7 @@ function ActorDetails() {
         </section>
       )}
 
-      {/* Seriale */}
+
       {serialeActor.length > 0 && (
         <section className="mb-12">
           <h2 className="text-xl font-black text-white uppercase italic tracking-tight mb-6 flex items-center gap-3">

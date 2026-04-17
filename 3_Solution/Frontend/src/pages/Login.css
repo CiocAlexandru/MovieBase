@@ -1,0 +1,62 @@
+@reference "tailwindcss";
+
+
+.login {
+  @apply flex justify-center items-center min-h-[80vh] px-4;
+}
+
+.login__card {
+  @apply bg-slate-900/50 backdrop-blur-xl p-10 rounded-3xl border border-slate-800 w-full max-w-md shadow-2xl relative overflow-hidden;
+}
+
+.login__glow {
+  @apply absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/20 blur-3xl rounded-full;
+}
+
+.login__title {
+  @apply text-3xl font-extrabold text-white mb-2;
+}
+
+.login__subtitle {
+  @apply text-slate-500 mb-8 text-sm font-medium;
+}
+
+.login__hint-box {
+  @apply mb-6 p-3 rounded-xl bg-slate-800/60 border border-slate-700 text-xs text-slate-400 space-y-1;
+}
+
+.login__hint-title {
+  @apply font-bold text-slate-300 mb-1;
+}
+
+.login__hint-value {
+  @apply text-indigo-400;
+}
+
+.login__form {
+  @apply space-y-5 relative z-10;
+}
+
+.login__label {
+  @apply text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1;
+}
+
+.login__input {
+  @apply w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition-all;
+}
+
+.login__password-toggle {
+  @apply absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-indigo-400;
+}
+
+.login__error {
+  @apply text-rose-400 text-xs font-bold text-center;
+}
+
+.login__submit {
+  @apply w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl mt-4 transition-all shadow-lg shadow-indigo-600/20 uppercase tracking-widest text-xs;
+}
+
+.login__forgot-link {
+  @apply text-[10px] text-indigo-400 font-bold hover:text-indigo-300 transition uppercase tracking-tighter;
+}

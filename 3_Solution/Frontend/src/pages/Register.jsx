@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Register.css';
 
 function Register() {
   const [nume, setNume] = useState('');
@@ -18,49 +19,47 @@ function Register() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[90vh] py-10 px-4">
-      <div className="bg-slate-900/50 backdrop-blur-xl p-10 rounded-3xl border border-slate-800 w-full max-w-md shadow-2xl relative overflow-hidden">
-        
-        {/* Lumini de fundal */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/20 blur-3xl rounded-full"></div>
-        <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-cyan-500/10 blur-3xl rounded-full"></div>
+    <div className="register">
+      <div className="register__card">
 
-        <h2 className="text-3xl font-extrabold text-white mb-2 tracking-tight">Creează Cont</h2>
-        <p className="text-slate-500 mb-8 text-sm font-medium">Alătură-te comunității MovieBase.</p>
-        
-        <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+        <div className="register__glow-top"></div>
+        <div className="register__glow-bottom"></div>
+
+        <h2 className="register__title">Creează Cont</h2>
+        <p className="register__subtitle">Alătură-te comunității MovieBase.</p>
+
+        <form onSubmit={handleSubmit} className="register__form">
           <div>
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Nume Complet</label>
-            <input 
+            <label className="register__label">Nume Complet</label>
+            <input
               type="text" required placeholder="Ex: Andrei Ionescu"
-              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+              className="register__input"
               onChange={(e) => setNume(e.target.value)}
             />
           </div>
 
           <div>
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Adresa Email</label>
-            <input 
+            <label className="register__label">Adresa Email</label>
+            <input
               type="email" required placeholder="nume@exemplu.com"
-              className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+              className="register__input"
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          
+
           <div className="relative">
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Parolă</label>
+            <label className="register__label">Parolă</label>
             <div className="relative">
-              <input 
-                type={showPassword ? "text" : "password"} 
+              <input
+                type={showPassword ? "text" : "password"}
                 required placeholder="••••••••"
-                className="w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all"
+                className="register__input"
                 onChange={(e) => setParola(e.target.value)}
               />
-              {/* OCHIUL SVG - EXACT CA LA LOGIN */}
-              <button 
+              <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-indigo-400 transition-colors"
+                className="register__password-toggle"
               >
                 {showPassword ? (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -77,26 +76,25 @@ function Register() {
           </div>
 
           <div>
-            <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Confirmă Parola</label>
-            <input 
+            <label className="register__label">Confirmă Parola</label>
+            <input
               type="password" required placeholder="••••••••"
-              className={`w-full bg-slate-950/50 border rounded-xl px-4 py-3 text-white outline-none transition-all ${
-                confirmParola && parola !== confirmParola ? 'border-red-500/50' : 'border-slate-800 focus:border-indigo-500'
-              }`}
+              className={`register__confirm-input ${confirmParola && parola !== confirmParola ? 'border-red-500/50' : 'border-slate-800 focus:border-indigo-500'
+                }`}
               onChange={(e) => setConfirmParola(e.target.value)}
             />
           </div>
 
-          <button 
-            type="submit" 
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl mt-6 transition-all shadow-lg shadow-indigo-600/20 uppercase tracking-widest text-xs"
+          <button
+            type="submit"
+            className="register__submit"
           >
             Creează Cont
           </button>
         </form>
 
-        <p className="mt-8 text-center text-slate-500 text-sm font-medium">
-          Ai deja cont? <Link to="/login" className="text-indigo-400 font-bold hover:text-indigo-300 transition hover:underline">Loghează-te</Link>
+        <p className="register__footer">
+          Ai deja cont? <Link to="/login" className="register__login-link">Loghează-te</Link>
         </p>
       </div>
     </div>

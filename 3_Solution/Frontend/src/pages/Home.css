@@ -1,0 +1,139 @@
+@reference "tailwindcss";
+
+
+.hero {
+  @apply relative h-[55vh] md:h-[65vh] lg:h-[70vh] w-full mb-12 md:mb-16 overflow-hidden transition-all duration-1000;
+}
+
+.hero__bg-image {
+  @apply absolute inset-0 w-full h-full object-contain object-center opacity-90 block;
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes pulse-subtle {
+  0% { transform: scale(1); opacity: 0.7; }
+  100% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.hero__overlay-top {
+  @apply absolute inset-0;
+  background: linear-gradient(to top, #0f172a, rgba(15, 23, 42, 0.3), transparent);
+}
+
+.hero__overlay-left {
+  @apply absolute inset-0;
+  background: linear-gradient(to right, #0f172a, transparent, transparent);
+}
+
+.hero__content {
+  @apply relative z-10 h-full flex flex-col justify-center px-6 md:px-20 max-w-xl;
+}
+
+.hero__badges {
+  @apply flex flex-wrap items-center gap-2 md:gap-3 mb-4 md:mb-6;
+}
+
+.hero__badge-type {
+  @apply bg-indigo-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest;
+}
+
+.hero__badge-rating {
+  @apply text-yellow-400 font-bold text-sm flex items-center gap-1;
+}
+
+.hero__badge-popularity {
+  @apply text-orange-500 font-bold text-sm flex items-center gap-1;
+}
+
+.hero__title {
+  @apply text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter uppercase italic leading-tight mb-3 md:mb-4 drop-shadow-2xl transition-all;
+}
+
+.hero__description {
+  @apply text-slate-300 text-xs md:text-sm lg:text-base max-w-xl mb-4 md:mb-6 font-medium leading-relaxed border-l-3 border-indigo-500 pl-3 md:pl-4 line-clamp-3;
+}
+
+.hero__actions {
+  @apply flex flex-wrap gap-5;
+}
+
+.hero__cta-btn {
+  @apply bg-white text-black px-6 md:px-10 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs hover:bg-indigo-500 hover:text-white transition-all transform hover:-translate-y-1 shadow-2xl inline-block;
+}
+
+.hero__dots {
+  @apply flex items-center gap-2 ml-4;
+}
+
+/* ── CATALOG SECTION ─────────────────────────────── */
+.catalog {
+  @apply px-6 md:px-20;
+}
+
+.catalog__header {
+  @apply mb-12;
+}
+
+.catalog__accent {
+  @apply flex items-center gap-4 mb-2;
+}
+
+.catalog__accent-line {
+  @apply h-1 w-12 bg-indigo-500 rounded-full;
+}
+
+.catalog__accent-label {
+  @apply text-indigo-400 text-[10px] font-black uppercase tracking-[0.4em];
+}
+
+.catalog__title {
+  @apply text-4xl md:text-4xl font-black text-white tracking-tight uppercase italic;
+}
+
+.catalog__count {
+  @apply text-slate-500 mt-4 font-bold uppercase tracking-widest text-[10px];
+}
+
+.catalog__grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10;
+}
+
+/* Stare goală */
+.catalog__empty {
+  @apply text-center py-32 bg-slate-900/10 rounded-[60px] border-2 border-dashed border-slate-800/50;
+}
+
+.catalog__empty-icon {
+  @apply text-8xl mb-8 block;
+}
+
+.catalog__empty-title {
+  @apply text-3xl text-white font-black uppercase tracking-tighter;
+}
+
+.catalog__empty-text {
+  @apply text-slate-500 mt-4 max-w-md mx-auto;
+}
+
+/* ── FOOTER ──────────────────────────────────────── */
+.home-footer {
+  @apply mt-32 pt-12 border-t border-slate-800/50 flex flex-col items-center;
+}
+
+.home-footer__text {
+  @apply text-slate-700 text-[9px] font-black uppercase tracking-widest;
+}

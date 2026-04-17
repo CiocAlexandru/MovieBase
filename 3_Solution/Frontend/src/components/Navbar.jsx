@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/useAuth';
+import { listaFilme } from '../data/filme';
+import { listaSeriale } from '../data/seriale';
+import { listaActori } from '../data/actori';
+import { listaRegizori } from '../data/regizori';
+import './Navbar.css';
 
 function Navbar({ searchTerm, setSearchTerm }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const searchRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const { utilizatorCurent, logout } = useAuth();
@@ -14,79 +21,161 @@ function Navbar({ searchTerm, setSearchTerm }) {
     navigate('/');
   };
 
-  // Închide meniul la click pe orice link
   const closeMenu = () => setIsMenuOpen(false);
 
-  // FUNCȚIA DE CĂUTARE INTELIGENTĂ
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchTerm(value);
+    setShowDropdown(value.length >= 2);
 
-    // Dacă utilizatorul scrie ceva și NU se află pe pagina Home, 
-    // îl redirecționăm automat pe Home pentru a vedea rezultatele.
     if (value.length > 0 && location.pathname !== '/') {
       navigate('/');
     }
   };
 
+  const term = searchTerm.toLowerCase();
+  const toateFilmele = [...listaFilme, ...listaSeriale];
+  const rezultateFilme = term.length >= 2 ? toateFilmele.filter(f => f.titlu.toLowerCase().includes(term)).slice(0, 5) : [];
+  const rezultateActori = term.length >= 2 ? listaActori.filter(a => a.nume.toLowerCase().includes(term)).slice(0, 5) : [];
+  const rezultateRegizori = term.length >= 2 ? listaRegizori.filter(r => r.nume.toLowerCase().includes(term)).slice(0, 5) : [];
+  const areRezultate = rezultateFilme.length > 0 || rezultateActori.length > 0 || rezultateRegizori.length > 0;
+
+  const handleResultClick = () => {
+    setShowDropdown(false);
+    setSearchTerm('');
+  };
+
   return (
     <>
-      <nav className="bg-[#0f172a]/95 backdrop-blur-md sticky top-0 z-50 py-3 w-full border-b border-slate-800 shadow-xl">
-        <div className="max-w-480 mx-auto px-6 md:px-10 flex items-center gap-6">
-          
-          {/* LOGO */}
-          <Link 
-            to="/" 
-            onClick={closeMenu} 
-            className="text-2xl font-black tracking-tighter bg-linear-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent hover:from-indigo-500 hover:to-cyan-400 transition-all duration-500 shrink-0 uppercase transform hover:scale-105 hover:drop-shadow-[0_0_10px_rgba(249,218,40,0.5)]"
+      <nav className="navbar">
+        <div className="navbar__container">
+
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="navbar__logo"
           >
             PELICULA
           </Link>
 
-          {/* BUTON MENIU */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)} 
-            className="relative z-60 flex items-center gap-2 text-slate-300 font-bold hover:text-white hover:bg-slate-800 px-3 py-2 rounded-lg transition-all active:scale-95 shrink-0"
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="navbar__menu-btn"
           >
-            <span className="text-xl">{isMenuOpen ? '✕' : '☰'}</span>
-            <span className="hidden md:block text-[10px] uppercase tracking-widest">Meniu</span>
+            <span className="navbar__menu-icon">{isMenuOpen ? '✕' : '☰'}</span>
+            <span className="navbar__menu-label">Meniu</span>
           </button>
 
-          {/* SEARCH BAR CENTRAL */}
-          <div className="grow relative flex items-center max-w-4xl mx-auto">
-            <input 
-              type="text" 
-              placeholder="Caută filme..."
-              value={searchTerm}
-              onChange={handleSearchChange} // FOLOSIM FUNCȚIA NOUĂ AICI
-              className="w-full bg-slate-950 border border-slate-800 text-slate-200 py-2 px-4 pr-10 rounded-xl focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition text-sm shadow-inner"
-            />
-            <span className="absolute right-3 text-slate-500">🔍</span>
+          <div className="navbar__search-wrap" ref={searchRef}>
+            <div className="relative flex items-center">
+              <input
+                type="text"
+                placeholder="Caută filme, actori, regizori..."
+                value={searchTerm}
+                onChange={handleSearchChange}
+                onFocus={() => term.length >= 2 && setShowDropdown(true)}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                className="navbar__search-input"
+              />
+              <span className="navbar__search-icon">🔍</span>
+            </div>
+
+            {showDropdown && term.length >= 2 && (
+              <div className="navbar__dropdown">
+
+                {!areRezultate && (
+                  <div className="navbar__dropdown-empty">
+                    Niciun rezultat pentru „{searchTerm}"
+                  </div>
+                )}
+
+                {rezultateFilme.length > 0 && (
+                  <div>
+                    <div className="navbar__dropdown-section-title text-indigo-400">🎬 Filme & Seriale</div>
+                    {rezultateFilme.map(film => (
+                      <Link
+                        key={film.id}
+                        to={`/movie/${film.id}`}
+                        onClick={handleResultClick}
+                        className="navbar__dropdown-item"
+                      >
+                        <img src={film.img} alt={film.titlu} className="navbar__dropdown-poster" />
+                        <div className="min-w-0">
+                          <p className="navbar__dropdown-name">{film.titlu}</p>
+                          <p className="navbar__dropdown-meta">{film.an} • {film.gen}</p>
+                        </div>
+                        <span className="navbar__dropdown-rating">⭐ {film.nota}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {rezultateActori.length > 0 && (
+                  <div className={rezultateFilme.length > 0 ? 'border-t border-slate-800' : ''}>
+                    <div className="navbar__dropdown-section-title text-cyan-400">🎭 Actori</div>
+                    {rezultateActori.map(actor => (
+                      <Link
+                        key={actor.id}
+                        to={`/actor/${actor.id}`}
+                        onClick={handleResultClick}
+                        className="navbar__dropdown-item"
+                      >
+                        <img src={actor.img} alt={actor.nume} className="navbar__dropdown-avatar" />
+                        <div className="min-w-0">
+                          <p className="navbar__dropdown-name">{actor.nume}</p>
+                          <p className="navbar__dropdown-meta">{actor.varsta} ani</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+
+                {rezultateRegizori.length > 0 && (
+                  <div className={(rezultateFilme.length > 0 || rezultateActori.length > 0) ? 'border-t border-slate-800' : ''}>
+                    <div className="navbar__dropdown-section-title text-emerald-400">🎬 Regizori</div>
+                    {rezultateRegizori.map(reg => (
+                      <Link
+                        key={reg.id}
+                        to={`/director/${reg.id}`}
+                        onClick={handleResultClick}
+                        className="navbar__dropdown-item"
+                      >
+                        <img src={reg.img} alt={reg.nume} className="navbar__dropdown-avatar" />
+                        <div className="min-w-0">
+                          <p className="navbar__dropdown-name">{reg.nume}</p>
+                          <p className="navbar__dropdown-meta">Regizor</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
           </div>
 
-          {/* AUTH LINKS */}
-          <div className="flex items-center gap-4 text-sm font-bold shrink-0">
+          <div className="navbar__auth">
             {utilizatorCurent ? (
               <>
-                <span className="hidden sm:block text-slate-400 text-xs">
+                <span className="navbar__user-name">
                   {utilizatorCurent.rol === 'Administrator' ? '🛡️' : '👤'} {utilizatorCurent.nume}
                 </span>
                 <button
                   onClick={handleLogout}
-                  className="bg-rose-600/80 text-white px-5 py-2 rounded-full hover:bg-rose-500 transition shadow-lg text-xs font-black uppercase tracking-widest"
+                  className="navbar__btn-logout"
                 >
                   Ieșire
                 </button>
               </>
             ) : (
               <>
-                <Link to="/login" onClick={closeMenu} className="hidden sm:block text-slate-400 hover:text-white transition px-2">
+                <Link to="/login" onClick={closeMenu} className="navbar__btn-login bg-transparent shadow-none hover:bg-slate-800 hidden sm:block">
                   Autentificare
                 </Link>
-                <Link 
-                  to="/register" 
-                  onClick={closeMenu} 
-                  className="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-500 transition shadow-lg shadow-indigo-600/20"
+                <Link
+                  to="/register"
+                  onClick={closeMenu}
+                  className="navbar__btn-register"
                 >
                   Înregistrare
                 </Link>
@@ -96,79 +185,73 @@ function Navbar({ searchTerm, setSearchTerm }) {
         </div>
       </nav>
 
-      {/* OVERLAY MENIU - FULL SCREEN STYLE */}
-      <div 
-        className={`fixed inset-0 z-40 bg-[#0f172a]/98 backdrop-blur-2xl transition-all duration-500 flex items-center ${
-          isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-        }`}
+      <div
+        className={`menu-overlay ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+          }`}
       >
-        <div className="max-w-480 mx-auto px-10 grid grid-cols-1 md:grid-cols-3 gap-16 w-full">
-          
-          {/* Secțiune Filme */}
+        <div className="menu-overlay__container grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 w-full">
+
           <div className="space-y-6">
-            <h4 className="text-indigo-400 font-black uppercase text- tracking-[0.3em] border-b border-indigo-500/20 pb-2">Statistici</h4>
-            <ul className="space-y-4 text-3xl font-bold text-white">
-              <li><Link to="/top" onClick={closeMenu} className="hover:text-indigo-400 transition">🏆 Top Filme</Link></li>
-              <li><Link to="/popular" onClick={closeMenu} className="hover:text-indigo-400 transition">🔥 Filme Populare</Link></li>
-              <li><Link to="/top-seriale" onClick={closeMenu} className="hover:text-indigo-400 transition">📺Top Seriale</Link></li>
-              <li><Link to="/popular-series" onClick={closeMenu} className="hover:text-indigo-400 transition">📈Seriale Populare</Link></li>
-              <li><Link to="/new-releases" onClick={closeMenu} className="hover:text-indigo-400 transition">📅 Lansări Noi</Link></li>
-              <li><Link to="/top-actori" onClick={closeMenu} className="hover:text-indigo-400 transition">🎭Top Actori</Link></li>
-              <li><Link to="/top-regizori" onClick={closeMenu} className="hover:text-indigo-400 transition">🎬Top Regizori</Link></li>
-              <li><Link to="/watchlist" onClick={closeMenu} className="hover:text-indigo-400 transition">❤️ Lista Mea</Link></li>
+            <h4 className="menu-overlay__section-title">Statistici</h4>
+            <ul className="space-y-3 font-bold text-white text-lg md:text-xl">
+              <li><Link to="/top" onClick={closeMenu} className="menu-overlay__link">🏆 Top Filme</Link></li>
+              <li><Link to="/popular" onClick={closeMenu} className="menu-overlay__link">🔥 Filme Populare</Link></li>
+              <li><Link to="/top-seriale" onClick={closeMenu} className="menu-overlay__link">📺Top Seriale</Link></li>
+              <li><Link to="/popular-series" onClick={closeMenu} className="menu-overlay__link">📈Seriale Populare</Link></li>
+              <li><Link to="/new-releases" onClick={closeMenu} className="menu-overlay__link">📅 Lansări Noi</Link></li>
+              <li><Link to="/top-actori" onClick={closeMenu} className="menu-overlay__link">🎭Top Actori</Link></li>
+              <li><Link to="/top-regizori" onClick={closeMenu} className="menu-overlay__link">🎬Top Regizori</Link></li>
+              <li><Link to="/watchlist" onClick={closeMenu} className="menu-overlay__link">❤️ Lista Mea</Link></li>
             </ul>
           </div>
 
-          {/* Secțiune Genuri */}
           <div className="space-y-6">
-            <h4 className="text-indigo-400 font-black uppercase text-m tracking-[0.3em] border-b border-indigo-500/20 pb-2">Genuri</h4>
-            <div className="grid grid-cols-2 gap-4 text-slate-400 font-medium text-lg">
-              <Link to="/category/Comedie" onClick={closeMenu} className="hover:text-white transition">Comedie</Link>
-              <Link to="/category/Dramă" onClick={closeMenu} className="hover:text-white transition">Dramă</Link>
-              <Link to="/category/Acțiune" onClick={closeMenu} className="hover:text-white transition">Acțiune</Link>
-              <Link to="/category/Thriller" onClick={closeMenu} className="hover:text-white transition">Thriller</Link>
-              <Link to="/category/Documentar" onClick={closeMenu} className="hover:text-white transition">Documentar</Link>
-              <Link to="/category/Istoric" onClick={closeMenu} className="hover:text-white transition">Istoric</Link>
-              <Link to="/category/Horror" onClick={closeMenu} className="hover:text-white transition">Horror</Link>
-              <Link to="/category/Sci-Fi" onClick={closeMenu} className="hover:text-white transition">Sci-Fi</Link>
-              <Link to="/category/Romantic" onClick={closeMenu} className="hover:text-white transition">Romantic</Link>
-              <Link to="/category/Crimă" onClick={closeMenu} className="hover:text-white transition">Crimă</Link>
-              <Link to="/category/Aventură" onClick={closeMenu} className="hover:text-white transition">Aventură</Link>
-              <Link to="/category/Biografic" onClick={closeMenu} className="hover:text-white transition">Biografic</Link>
-              
-              <Link to="/" onClick={closeMenu} className="hover:text-white transition italic border-t border-slate-800 pt-2 col-span-2">Toate Genurile</Link>
+            <h4 className="menu-overlay__section-title">Genuri</h4>
+            <div className="grid grid-cols-2 gap-3 md:gap-4 text-slate-400 font-medium text-base md:text-lg">
+              <Link to="/category/Comedie" onClick={closeMenu} className="menu-overlay__link text-slate-400">Comedie</Link>
+              <Link to="/category/Dramă" onClick={closeMenu} className="menu-overlay__link text-slate-400">Dramă</Link>
+              <Link to="/category/Acțiune" onClick={closeMenu} className="menu-overlay__link text-slate-400">Acțiune</Link>
+              <Link to="/category/Thriller" onClick={closeMenu} className="menu-overlay__link text-slate-400">Thriller</Link>
+              <Link to="/category/Documentar" onClick={closeMenu} className="menu-overlay__link text-slate-400">Documentar</Link>
+              <Link to="/category/Istoric" onClick={closeMenu} className="menu-overlay__link text-slate-400">Istoric</Link>
+              <Link to="/category/Horror" onClick={closeMenu} className="menu-overlay__link text-slate-400">Horror</Link>
+              <Link to="/category/Sci-Fi" onClick={closeMenu} className="menu-overlay__link text-slate-400">Sci-Fi</Link>
+              <Link to="/category/Romantic" onClick={closeMenu} className="menu-overlay__link text-slate-400">Romantic</Link>
+              <Link to="/category/Crimă" onClick={closeMenu} className="menu-overlay__link text-slate-400">Crimă</Link>
+              <Link to="/category/Aventură" onClick={closeMenu} className="menu-overlay__link text-slate-400">Aventură</Link>
+              <Link to="/category/Biografic" onClick={closeMenu} className="menu-overlay__link text-slate-400">Biografic</Link>
+
+              <Link to="/" onClick={closeMenu} className="menu-overlay__link text-slate-400 italic border-t border-slate-800 pt-2 col-span-2">Toate Genurile</Link>
             </div>
           </div>
 
-          {/* Secțiune Cont */}
           <div className="space-y-6">
-            <h4 className="text-indigo-400 font-black uppercase text-m tracking-[0.3em] border-b border-indigo-500/20 pb-2">Acces Utilizator</h4>
+            <h4 className="menu-overlay__section-title">Acces Utilizator</h4>
             <div className="space-y-6">
               {utilizatorCurent ? (
                 <>
                   <p className="text-slate-300 text-lg font-bold">
                     {utilizatorCurent.rol === 'Administrator' ? '🛡️' : '👤'} {utilizatorCurent.nume}
                   </p>
-                  <p className="text-slate-500 text-sm -mt-4">{utilizatorCurent.email}</p>
-                  <Link to="/edit-profile" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">
+                  <p className="text-slate-500 text-sm -mt-2">{utilizatorCurent.email}</p>
+                  <Link to="/edit-profile" onClick={closeMenu} className="block menu-overlay__link text-xl md:text-2xl font-bold italic text-white">
                     Editează Profil
                   </Link>
                   {utilizatorCurent.rol === 'Administrator' && (
-                    <Link to="/admin" onClick={closeMenu} className="block text-indigo-400 hover:text-indigo-300 transition text-2xl font-bold italic">Panou Admin</Link>
+                    <Link to="/admin" onClick={closeMenu} className="block menu-overlay__link text-indigo-400 text-xl md:text-2xl font-bold italic">Panou Admin</Link>
                   )}
-                  <button onClick={handleLogout} className="block text-rose-400 hover:text-rose-300 transition text-2xl font-bold italic">Deconectare</button>
+                  <button onClick={handleLogout} className="block menu-overlay__link text-rose-400 text-xl md:text-2xl font-bold italic">Deconectare</button>
                 </>
               ) : (
                 <>
-                  <Link to="/login" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Autentificare</Link>
-                  <Link to="/register" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Cont Nou</Link>
+                  <Link to="/login" onClick={closeMenu} className="block menu-overlay__link text-white text-xl md:text-2xl font-bold italic">Autentificare</Link>
+                  <Link to="/register" onClick={closeMenu} className="block menu-overlay__link text-white text-xl md:text-2xl font-bold italic">Cont Nou</Link>
                 </>
               )}
-              
-              {/* MODIFICARE EFECTUATĂ AICI */}
-              <div className="pt-8 border-t border-slate-800">
-                <p className="text-indigo-400 font-black uppercase text-m tracking-[0.3em] border-b border-indigo-500/20 pb-2">Suport</p>
-                <Link to="/suport" onClick={closeMenu} className="block text-white hover:text-indigo-400 transition text-2xl font-bold italic">Ajutor & Contact</Link>
+
+              <div className="pt-6 border-t border-slate-800">
+                <p className="menu-overlay__section-title mb-4">Suport</p>
+                <Link to="/suport" onClick={closeMenu} className="block menu-overlay__link text-white text-xl md:text-2xl font-bold italic">Ajutor & Contact</Link>
               </div>
             </div>
           </div>

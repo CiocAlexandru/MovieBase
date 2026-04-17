@@ -1,0 +1,49 @@
+@reference "tailwindcss";
+
+.edit-profile {
+  @apply flex justify-center items-center min-h-[80vh] py-10 px-4;
+}
+
+.edit-profile__card {
+  @apply bg-slate-900/50 backdrop-blur-xl p-10 rounded-3xl border border-slate-800 w-full max-w-lg shadow-2xl relative overflow-hidden;
+}
+
+.edit-profile__glow {
+  @apply absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/10 blur-3xl rounded-full;
+}
+
+.edit-profile__title {
+  @apply text-3xl font-extrabold text-white mb-1 tracking-tight;
+}
+
+.edit-profile__subtitle {
+  @apply text-slate-500 mb-8 text-sm font-medium;
+}
+
+.edit-profile__form {
+  @apply space-y-5 relative z-10;
+}
+
+.edit-profile__label {
+  @apply text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1;
+}
+
+.edit-profile__input {
+  @apply w-full bg-slate-950/50 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition-all;
+}
+
+.edit-profile__submit {
+  @apply w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-xl mt-4 transition-all shadow-lg shadow-indigo-600/20 uppercase tracking-widest text-xs;
+}
+
+.edit-profile__feedback {
+  @apply text-center text-sm font-bold p-3 rounded-xl;
+}
+
+.edit-profile__feedback--success {
+  @apply text-emerald-400 bg-emerald-500/10 border border-emerald-500/20;
+}
+
+.edit-profile__feedback--error {
+  @apply text-rose-400 bg-rose-500/10 border border-rose-500/20;
+}

@@ -1,0 +1,97 @@
+@reference "tailwindcss";
+
+.movie-card {
+  @apply bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 transition-all duration-500 shadow-2xl relative;
+}
+
+.movie-card:hover {
+  @apply border-indigo-500/50;
+}
+
+.movie-card__badge {
+  @apply absolute top-4 left-4 z-10 bg-slate-950/60 backdrop-blur-md px-2 py-1 rounded-lg border border-slate-700 text-[10px] font-black text-yellow-400 flex items-center gap-1;
+}
+
+.movie-card__fav-btn {
+  @apply absolute top-4 right-4 z-10 p-2 rounded-full backdrop-blur-md transition-all active:scale-90;
+}
+
+.movie-card__fav-btn--active {
+  @apply bg-indigo-600 text-white shadow-lg shadow-indigo-600/40;
+}
+
+.movie-card__fav-btn--inactive {
+  @apply bg-slate-950/40 text-slate-400;
+}
+
+.movie-card__fav-btn--inactive:hover {
+  @apply text-white bg-slate-800;
+}
+
+.movie-card__poster-wrap {
+  @apply relative overflow-hidden bg-slate-800 flex items-center justify-center;
+  aspect-ratio: 2 / 3;
+}
+
+.movie-card__poster-img {
+  @apply w-full h-full object-cover transition-transform duration-700;
+}
+
+/* Efect zoom imagine la hover pe card (înlocuiește group-hover) */
+.movie-card:hover .movie-card__poster-img {
+  transform: scale(1.1);
+}
+
+.movie-card__poster-overlay {
+  @apply absolute inset-0 opacity-90;
+  background: linear-gradient(to top, #020617, transparent);
+}
+
+.movie-card__popularity {
+  @apply absolute bottom-4 left-4 flex items-center gap-1.5;
+}
+
+.movie-card__popularity-dot {
+  @apply flex h-2 w-2 relative;
+}
+
+.movie-card__popularity-ping {
+  @apply animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75;
+}
+
+.movie-card__popularity-core {
+  @apply relative inline-flex rounded-full h-2 w-2 bg-orange-500;
+}
+
+.movie-card__popularity-text {
+  @apply text-[10px] font-black text-slate-300 uppercase tracking-widest;
+}
+
+.movie-card__body {
+  @apply p-6 relative;
+}
+
+.movie-card__header {
+  @apply flex justify-between items-start mb-4;
+}
+
+.movie-card__title {
+  @apply text-xl font-bold text-white truncate transition-colors;
+}
+
+/* Efect culoare titlu la hover pe card (înlocuiește group-hover) */
+.movie-card:hover .movie-card__title {
+  @apply text-indigo-400;
+}
+
+.movie-card__meta {
+  @apply text-xs text-slate-500 font-medium uppercase tracking-tighter;
+}
+
+.movie-card__cta {
+  @apply block w-full bg-indigo-600 text-white text-center font-black py-4 rounded-2xl transition-all text-[11px] uppercase tracking-widest shadow-lg shadow-indigo-600/20 active:scale-95;
+}
+
+.movie-card__cta:hover {
+  @apply bg-indigo-500;
+}

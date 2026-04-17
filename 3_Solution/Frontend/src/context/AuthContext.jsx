@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
     if (utilizatorCurent) {
       setUtilizatorCurent((prev) => ({
         ...prev,
-        ...dateNoi, // Aici suprascriem numele și email-ul cu ce vine din formular
+        ...dateNoi,
       }));
     }
   };
@@ -43,7 +43,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ utilizatorCurent, login, logout,actualizeazaProfil, eroare, setEroare }}>
+    <AuthContext.Provider value={{ utilizatorCurent, login, logout, actualizeazaProfil, eroare, setEroare }}>
       {children}
     </AuthContext.Provider>
   );

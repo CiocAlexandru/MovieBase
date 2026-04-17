@@ -1,0 +1,121 @@
+@reference "tailwindcss";
+
+.admin {
+  @apply pt-28 pb-20 px-4 md:px-10 max-w-7xl mx-auto min-h-screen;
+}
+
+.admin__accent-line {
+  @apply h-1 w-10 bg-indigo-500 rounded-full;
+}
+
+.admin__accent-label {
+  @apply text-indigo-400 text-[10px] font-black uppercase tracking-[0.4em];
+}
+
+.admin__title {
+  @apply text-5xl font-black text-white uppercase italic tracking-tighter;
+}
+
+.admin__subtitle {
+  @apply text-slate-500 text-sm mt-1 font-medium;
+}
+
+.admin__stats-grid {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4 mb-10;
+}
+
+.admin__stat-card {
+  @apply bg-slate-900/50 border border-slate-800 rounded-2xl p-5;
+}
+
+.admin__stat-icon {
+  @apply text-3xl mb-2;
+}
+
+.admin__stat-value {
+  @apply text-2xl font-black text-white;
+}
+
+.admin__stat-label {
+  @apply text-[10px] text-slate-500 uppercase tracking-widest font-bold;
+}
+
+.admin__tabs {
+  @apply flex gap-2 mb-8;
+}
+
+.admin__tab {
+  @apply px-6 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all;
+}
+
+.admin__tab--active {
+  @apply bg-indigo-600 text-white;
+}
+
+.admin__tab--inactive {
+  @apply bg-slate-900/50 text-slate-400 hover:text-white;
+}
+
+.admin__table-wrap {
+  @apply overflow-x-auto;
+}
+
+.admin__table {
+  @apply w-full text-left;
+}
+
+.admin__th {
+  @apply text-[10px] font-black text-slate-500 uppercase tracking-widest pb-4 border-b border-slate-800;
+}
+
+.admin__td {
+  @apply py-4 border-b border-slate-800/50 text-sm;
+}
+
+.admin__badge--activ {
+  @apply text-[10px] bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full font-black border border-emerald-500/20;
+}
+
+.admin__badge--suspendat {
+  @apply text-[10px] bg-rose-500/10 text-rose-400 px-3 py-1 rounded-full font-black border border-rose-500/20;
+}
+
+.admin__btn-edit {
+  @apply text-indigo-400 hover:text-indigo-300 font-bold text-xs uppercase tracking-widest;
+}
+
+.admin__btn-delete {
+  @apply text-rose-400 hover:text-rose-300 font-bold text-xs uppercase tracking-widest;
+}
+
+.admin__modal-overlay {
+  @apply fixed inset-0 bg-slate-950/90 backdrop-blur-xl z-50 flex items-center justify-center px-4;
+}
+
+.admin__modal {
+  @apply bg-slate-900 border border-slate-700 rounded-3xl p-8 w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto;
+}
+
+.admin__modal-title {
+  @apply text-2xl font-black text-white uppercase italic mb-6;
+}
+
+.admin__modal-label {
+  @apply text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1;
+}
+
+.admin__modal-input {
+  @apply w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none transition-all;
+}
+
+.admin__modal-select {
+  @apply w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:border-indigo-500 outline-none;
+}
+
+.admin__modal-btn-save {
+  @apply bg-indigo-600 hover:bg-indigo-500 text-white font-black py-3 px-8 rounded-xl uppercase tracking-widest text-xs transition-all;
+}
+
+.admin__modal-btn-cancel {
+  @apply bg-slate-800 hover:bg-slate-700 text-white font-black py-3 px-8 rounded-xl uppercase tracking-widest text-xs transition-all;
+}

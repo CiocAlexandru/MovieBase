@@ -1,0 +1,75 @@
+@reference "tailwindcss";
+
+
+.details-hero {
+  @apply relative w-full min-h-[80vh] md:min-h-[90vh] flex items-end pb-16 md:pb-24 overflow-visible;
+}
+
+.details-hero__bg {
+  @apply absolute inset-0 w-full h-full object-cover blur-3xl opacity-30 scale-110;
+}
+
+.details-hero__overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(to top, #0f172a, rgba(15, 23, 42, 0.6), transparent);
+}
+
+.details-hero__content {
+  @apply relative z-10 max-w-screen-2xl mx-auto px-6 md:px-20 w-full;
+}
+
+.details-hero__grid {
+  @apply flex flex-col md:flex-row gap-10 md:gap-16 items-end;
+}
+
+.details-poster {
+  @apply w-56 md:w-72 rounded-[32px] overflow-hidden shadow-2xl border border-white/10 shrink-0;
+}
+
+.details-poster__img {
+  @apply w-full h-auto object-cover;
+}
+
+.details__title {
+  @apply text-5xl md:text-8xl font-black text-white tracking-tighter uppercase italic leading-[0.85] mb-4 drop-shadow-2xl;
+}
+
+.details__subtitle {
+  @apply text-[10px] font-black text-slate-400 uppercase tracking-[0.4em];
+}
+
+.details__description {
+  @apply text-slate-300 text-lg md:text-xl max-w-2xl font-medium italic leading-relaxed;
+}
+
+.details__btn-trailer {
+  @apply bg-white text-black px-6 md:px-10 py-4 md:py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs hover:bg-indigo-500 hover:text-white transition-all shadow-2xl;
+}
+
+.details__sidebar {
+  @apply bg-white/5 backdrop-blur-2xl border border-white/10 rounded-[40px] p-8 md:p-10 shadow-2xl;
+}
+
+.details__sidebar-label {
+  @apply text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2;
+}
+
+.details__sidebar-value {
+  @apply text-white font-black text-lg;
+}
+
+.trailer-modal {
+  @apply fixed inset-0 z-[100] flex items-center justify-center;
+}
+
+.trailer-modal__backdrop {
+  @apply absolute inset-0 bg-slate-950/95 backdrop-blur-2xl;
+}
+
+.trailer-modal__content {
+  @apply relative w-full max-w-6xl mx-4 aspect-video rounded-[40px] overflow-hidden border border-white/10 shadow-2xl;
+}
+
+.trailer-modal__close {
+  @apply absolute top-4 right-4 z-10 bg-white/10 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center text-white font-black hover:bg-white hover:text-black transition-all;
+}

@@ -21,51 +21,47 @@ import ActorDetails from './pages/ActorDetails';
 import DirectorDetails from './pages/DirectorDetails';
 import EditProfile from './pages/EditProfile';
 
-// ... rutele:
-
 
 function App() {
-  // Starea globală pentru căutare
+
   const [searchTerm, setSearchTerm] = useState('');
 
   return (
     <AuthProvider>
-    <Router>
-      <div className="min-h-screen bg-[#0f172a] text-white selection:bg-indigo-500/30">
-        {/* Navbar primește starea pentru a o putea modifica */}
-        <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        
-        <main>
-          <Routes>
-            {/* Home primește searchTerm pentru a filtra filmele */}
-            <Route path="/" element={<Home searchTerm={searchTerm} />} />
-            <Route path="/top" element={<TopMovies />} />
-            <Route path="/category/:genre" element={<Home searchTerm={searchTerm} />} />
-            <Route path="/movie/:id" element={<MovieDetails />} />
-            <Route path="/popular" element={<PopularMovies />} />
-            <Route path="/new-releases" element={<NewReleases />} />
-            <Route path="/watchlist" element={<Watchlist />} />
-            <Route path="/top-actori" element={<TopActori />} />
-            <Route path="/top-regizori" element={<TopRegizori />} />
-            <Route path="/actor/:actorId" element={<ActorDetails />} />
-            <Route path="/director/:directorId" element={<DirectorDetails />} />
-            <Route path="/popular-series" element={<PopularSeries />} />
-            <Route path="/top-seriale" element={<TopSeriale />} />
-            <Route path="/suport" element={<Suport />} />
-            <Route path="/edit-profile" element={<EditProfile />} />
+      <Router>
+        <div className="min-h-screen bg-[#0f172a] text-white selection:bg-indigo-500/30">
+
+          <Navbar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+
+          <main>
+            <Routes>
+
+              <Route path="/" element={<Home searchTerm={searchTerm} />} />
+              <Route path="/top" element={<TopMovies />} />
+              <Route path="/category/:genre" element={<Home searchTerm={searchTerm} />} />
+              <Route path="/movie/:id" element={<MovieDetails />} />
+              <Route path="/popular" element={<PopularMovies />} />
+              <Route path="/new-releases" element={<NewReleases />} />
+              <Route path="/watchlist" element={<Watchlist />} />
+              <Route path="/top-actori" element={<TopActori />} />
+              <Route path="/top-regizori" element={<TopRegizori />} />
+              <Route path="/actor/:actorId" element={<ActorDetails />} />
+              <Route path="/director/:directorId" element={<DirectorDetails />} />
+              <Route path="/popular-series" element={<PopularSeries />} />
+              <Route path="/top-seriale" element={<TopSeriale />} />
+              <Route path="/suport" element={<Suport />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
 
 
-            {/* Pagini Autentificare */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-            
-            {/* Panou Admin (Accesibil doar manual momentan) */}
-            <Route path="/admin" element={<Admin />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+              <Route path="/admin" element={<Admin />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
     </AuthProvider>
   );
 }

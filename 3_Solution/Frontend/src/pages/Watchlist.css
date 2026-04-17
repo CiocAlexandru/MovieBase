@@ -1,0 +1,66 @@
+@reference "tailwindcss";
+
+
+.watchlist-locked {
+  @apply flex justify-center items-center min-h-[75vh] px-4;
+}
+
+.watchlist-locked__card {
+  @apply bg-slate-900/50 backdrop-blur-xl p-10 rounded-[40px] border border-slate-800 text-center max-w-lg shadow-2xl relative overflow-hidden;
+}
+
+.watchlist-locked__glow {
+  @apply absolute -top-24 -right-24 w-48 h-48 bg-indigo-600/10 blur-3xl rounded-full;
+}
+
+.watchlist-locked__icon {
+  @apply w-24 h-24 bg-slate-950 border border-slate-800 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-inner;
+}
+
+.watchlist-locked__title {
+  @apply text-3xl font-black text-white uppercase italic tracking-tighter mb-3;
+}
+
+.watchlist-locked__text {
+  @apply text-slate-400 mb-8 max-w-xs mx-auto;
+}
+
+.watchlist-locked__btn {
+  @apply bg-indigo-600 hover:bg-indigo-500 text-white font-black px-10 py-4 rounded-2xl uppercase tracking-widest text-xs transition-all shadow-lg shadow-indigo-600/20;
+}
+
+.watchlist__header {
+  @apply flex items-center gap-4 mb-2;
+}
+
+.watchlist__accent-bar {
+  @apply h-12 w-2 bg-indigo-500 rounded-full shadow-lg shadow-indigo-500/50;
+}
+
+.watchlist__title {
+  @apply text-4xl md:text-6xl font-black text-white uppercase italic tracking-tighter;
+}
+
+.watchlist__count {
+  @apply text-slate-500 font-bold uppercase tracking-widest text-[10px] mt-4;
+}
+
+.watchlist__grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-10;
+}
+
+.watchlist__empty {
+  @apply text-center py-32 rounded-[50px] border-2 border-dashed border-slate-800;
+}
+
+.watchlist__empty-icon {
+  @apply text-7xl opacity-30 mb-6;
+}
+
+.watchlist__empty-title {
+  @apply text-2xl font-black text-white uppercase tracking-tighter;
+}
+
+.watchlist__empty-text {
+  @apply text-slate-500 mt-3 max-w-sm mx-auto text-sm;
+}

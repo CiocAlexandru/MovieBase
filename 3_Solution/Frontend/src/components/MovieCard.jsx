@@ -1,15 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import './MovieCard.css';
 
 function MovieCard({ film }) {
   const navigate = useNavigate();
-  
-  // 1. Verificare Login
+
+
   const isLoggedIn = !!localStorage.getItem('userToken');
 
-  // 2. Inițializare stare Favorite (Inimă)
+
   const [isFavorite, setIsFavorite] = useState(() => {
-    if (!isLoggedIn) return false; 
+    if (!isLoggedIn) return false;
     const favs = JSON.parse(localStorage.getItem('watchlist')) || [];
     return favs.some(f => f.id === film.id);
   });
@@ -34,7 +35,7 @@ function MovieCard({ film }) {
       favs.push(film);
       newStatus = true;
     }
-    
+
     localStorage.setItem('watchlist', JSON.stringify(favs));
     setIsFavorite(newStatus);
   };
@@ -42,21 +43,20 @@ function MovieCard({ film }) {
   const showFullHeart = isLoggedIn && isFavorite;
 
   return (
-    <div className="group bg-slate-900 rounded-3xl overflow-hidden border border-slate-800 hover:border-indigo-500/50 transition-all duration-500 shadow-2xl relative">
-      
-      {/* BADGE NOTĂ (Top Stânga) */}
-      <div className="absolute top-4 left-4 z-10 bg-slate-950/60 backdrop-blur-md px-2 py-1 rounded-lg border border-slate-700 text-[10px] font-black text-yellow-400 flex items-center gap-1">
+    <div className="movie-card group">
+
+
+      <div className="movie-card__badge">
         ⭐ {film.nota}
       </div>
 
-      {/* BUTON INIMĂ (Top Dreapta) */}
-      <button 
+
+      <button
         onClick={toggleFavorite}
-        className={`absolute top-4 right-4 z-10 p-2 rounded-full backdrop-blur-md transition-all active:scale-90 ${
-          showFullHeart 
-            ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40' 
-            : 'bg-slate-950/40 text-slate-400 hover:text-white hover:bg-slate-800'
-        }`}
+        className={`movie-card__fav-btn ${showFullHeart
+            ? 'movie-card__fav-btn--active'
+            : 'movie-card__fav-btn--inactive'
+          }`}
       >
         {showFullHeart ? (
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -69,49 +69,49 @@ function MovieCard({ film }) {
         )}
       </button>
 
-      {/* POZA FILM + GRADIENT */}
-      <div className="relative aspect-2/3 overflow-hidden bg-slate-800 flex items-center justify-center">
-       <img 
-          src={film.img} 
-          alt={film.titlu} 
-          referrerPolicy="no-referrer" // <--- FOARTE IMPORTANT
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+
+      <div className="movie-card__poster-wrap">
+        <img
+          src={film.img}
+          alt={film.titlu}
+          referrerPolicy="no-referrer"
+          className="movie-card__poster-img"
           onError={(e) => {
-          e.target.onerror = null; 
-          e.target.src = "https://via.placeholder.com/500x750/1e293b/ffffff?text=Fara+Poster";
+            e.target.onerror = null;
+            e.target.src = "https://via.placeholder.com/500x750/1e293b/ffffff?text=Fara+Poster";
           }}
         />
-        {/* Overlay gradient pentru a face textul alb să se vadă perfect pe orice poză */}
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent opacity-90"></div>
-        
-        {/* FLACĂRA DE POPULARITATE (Jos Stânga pe poză) */}
-        <div className="absolute bottom-4 left-4 flex items-center gap-1.5">
-          <span className="flex h-2 w-2 relative">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+
+        <div className="movie-card__poster-overlay"></div>
+
+
+        <div className="movie-card__popularity">
+          <span className="movie-card__popularity-dot">
+            <span className="movie-card__popularity-ping"></span>
+            <span className="movie-card__popularity-core"></span>
           </span>
-          <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+          <span className="movie-card__popularity-text">
             🔥 {film.popularitate}% Popular
           </span>
         </div>
       </div>
 
-      {/* TEXT ȘI BUTON DETALII */}
-      <div className="p-6 relative">
-        <div className="flex justify-between items-start mb-4">
+
+      <div className="movie-card__body">
+        <div className="movie-card__header">
           <div className="flex-1">
-            <h3 className="text-xl font-bold text-white truncate group-hover:text-indigo-400 transition-colors">
+            <h3 className="movie-card__title">
               {film.titlu}
             </h3>
-            <p className="text-xs text-slate-500 font-medium uppercase tracking-tighter">
+            <p className="movie-card__meta">
               {film.an} • {film.gen}
             </p>
           </div>
         </div>
-        
-        <Link 
-          to={`/movie/${film.id}`} 
-          className="block w-full bg-indigo-600 hover:bg-indigo-500 text-white text-center font-black py-4 rounded-2xl transition-all text-[11px] uppercase tracking-widest shadow-lg shadow-indigo-600/20 active:scale-95"
+
+        <Link
+          to={`/movie/${film.id}`}
+          className="movie-card__cta"
         >
           Vezi Detalii
         </Link>
